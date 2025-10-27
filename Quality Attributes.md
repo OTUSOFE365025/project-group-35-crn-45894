@@ -24,7 +24,7 @@ Add the Quality Attributes to this file
 | Response Measure   |  99.5% uptime per month                  
 
 
-
+---
 
 | Scalability        | Environment: Cloud Environment with auto-scaling                  |
 |--------------------|------------------------------------------------------|
@@ -34,7 +34,7 @@ Add the Quality Attributes to this file
 | Response           |  System scales resources horizontally
 | Response Measure   |  Sustains 5000 concurrent sessions without compromising performance
 
-
+---
 
 
 | Privacy & Security | Environment: Secure network or remote access                      |
@@ -45,10 +45,10 @@ Add the Quality Attributes to this file
 | Response           | Access granted only after SSO validation, data encrypted at all times
 | Response Measure   | no unauthorized data exposure                   
 
+---
 
 
-
-| Maintainbility     | Environment: Running production environment                       |
+| Maintainability     | Environment: Running production environment                       |
 |--------------------|------------------------------------------------------|
 | Source             | System maintainer               
 | Stimulus           | System maintainer pushes new update                    
@@ -57,7 +57,7 @@ Add the Quality Attributes to this file
 | Response Measure   | No service interruption                   
 
 
-
+---
 
 | Usability          | Environment: Any supported device                                 |
 |--------------------|------------------------------------------------------|
@@ -68,7 +68,7 @@ Add the Quality Attributes to this file
 | Response Measure   | more than 85% successful task completion in usability test 
 
 
-
+---
 
 | Interoperability   | Environment: Integration setup phase                              |
 |--------------------|------------------------------------------------------|
