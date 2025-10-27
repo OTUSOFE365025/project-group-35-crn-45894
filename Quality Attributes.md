@@ -11,13 +11,17 @@ Add the Quality Attributes to this file
 
 
 
+
+
 | Availability       | Normal and peak load                                 |
 |--------------------|------------------------------------------------------|
 | Source             |  student, administrator               
 | Stimulus           |  users can access the system at any time                   
 | Artifact           |  cloud-deployed assistant service               
-| Response           |  System continues operating with redundancy and failover        
+| Response           |  System remains operational with minimal downtime       
 | Response Measure   |  99.5% uptime per month                  
+
+
 
 
 | Scalability        | Cloud Environment with auto-scaling                  |
@@ -29,6 +33,8 @@ Add the Quality Attributes to this file
 | Response Measure   |  Sustains 5000 concurrent sessions without compromising performance
 
 
+
+
 | Privacy & Security | Secure network or remote access                      |
 |--------------------|------------------------------------------------------|
 | Source             | Student, Lecturer, Administrator                
@@ -38,13 +44,17 @@ Add the Quality Attributes to this file
 | Response Measure   | no unauthorized data exposure                   
 
 
+
+
 | Maintainbility     | Running production environment                       |
 |--------------------|------------------------------------------------------|
 | Source             | System maintainer               
 | Stimulus           | System maintainer pushes new update                    
 | Artifact           | Deployment pipeline and configuration management       
-| Response           | update occurs automatically with zero downtime           
+| Response           | System updates can be applied with minimal effort and downtime, easy to extend or fix issues 
 | Response Measure   | No service interruption                   
+
+
 
 
 | Usability          | Any supported device                                 |
@@ -52,8 +62,10 @@ Add the Quality Attributes to this file
 | Source             | Student                
 | Stimulus           | Student interacts through web or voice interface      
 | Artifact           | Use interface layer                
-| Response           | clear conversational flow           
+| Response           | clear conversational flow, user can complete the task easily          
 | Response Measure   | more than 85% successful task completion in usability test 
+
+
 
 
 | Interoperability   | Integration setup phase                              |
@@ -61,7 +73,7 @@ Add the Quality Attributes to this file
 | Source             | system maintainer, data source system                
 | Stimulus           | system connects to new LMS or calendar system       
 | Artifact           | API gateway and adapter modules                
-| Response           | communicates using standard REST/GraphQL interfaces        
+| Response           | communicates using standard APIs, supports multiple external data sources      
 | Response Measure   | successful data exchange verified by API test suite  
 
 
