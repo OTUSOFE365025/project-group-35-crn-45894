@@ -1,7 +1,7 @@
 
 Add the Quality Attributes to this file
 
-| Performance        | Normal operating load                               |
+| Performance        | Environment: Normal operating load                               |
 |--------------------|-----------------------------------------------------|
 | Source             | student                                             |
 | Stimulus           | User submits a query through text or voice          |
@@ -13,7 +13,7 @@ Add the Quality Attributes to this file
 
 
 
-| Availability       | Normal and peak load                                 |
+| Availability       | Environment: Normal and peak load                                 |
 |--------------------|------------------------------------------------------|
 | Source             |  student, administrator               
 | Stimulus           |  users can access the system at any time                   
@@ -24,7 +24,7 @@ Add the Quality Attributes to this file
 
 
 
-| Scalability        | Cloud Environment with auto-scaling                  |
+| Scalability        | Environment: Cloud Environment with auto-scaling                  |
 |--------------------|------------------------------------------------------|
 | Source             |  Administrator               
 | Stimulus           |  Concurrent user count increases sharply   
@@ -35,7 +35,7 @@ Add the Quality Attributes to this file
 
 
 
-| Privacy & Security | Secure network or remote access                      |
+| Privacy & Security | Environment: Secure network or remote access                      |
 |--------------------|------------------------------------------------------|
 | Source             | Student, Lecturer, Administrator                
 | Stimulus           | User logs in or requests private data                    
@@ -46,7 +46,7 @@ Add the Quality Attributes to this file
 
 
 
-| Maintainbility     | Running production environment                       |
+| Maintainbility     | Environment: Running production environment                       |
 |--------------------|------------------------------------------------------|
 | Source             | System maintainer               
 | Stimulus           | System maintainer pushes new update                    
@@ -57,7 +57,7 @@ Add the Quality Attributes to this file
 
 
 
-| Usability          | Any supported device                                 |
+| Usability          | Environment: Any supported device                                 |
 |--------------------|------------------------------------------------------|
 | Source             | Student                
 | Stimulus           | Student interacts through web or voice interface      
@@ -68,7 +68,7 @@ Add the Quality Attributes to this file
 
 
 
-| Interoperability   | Integration setup phase                              |
+| Interoperability   | Environment: Integration setup phase                              |
 |--------------------|------------------------------------------------------|
 | Source             | system maintainer, data source system                
 | Stimulus           | system connects to new LMS or calendar system       
