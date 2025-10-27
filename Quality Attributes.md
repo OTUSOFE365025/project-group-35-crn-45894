@@ -9,9 +9,7 @@ Add the Quality Attributes to this file
 | Response           | System interprets and responds                      |
 | Response Measure   | Average response time less than 2 seconds           |
 
-
-
-
+---
 
 | Availability       | Environment: Normal and peak load                                 |
 |--------------------|------------------------------------------------------|
