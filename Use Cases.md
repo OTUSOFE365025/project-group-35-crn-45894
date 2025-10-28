@@ -10,3 +10,8 @@ Add the Use Cases to this file
 | UC6 - Configure System      | Admin or system maintainer updates workflow, policies or configurations.  
 | UC7 - monitor System        | Maintainer tracks performance metrics, uptime, and logs to ensure availability. 
 
+---
+![Use Case Diagram](use_case_diagram.png)
+
+
+
