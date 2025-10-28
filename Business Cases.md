@@ -1,1 +1,7 @@
-Testing
+# Business Case – AIDAP
+
+Ontario Tech University currently relies on multiple disconnected systems such as the LMS, registration portal, calendars, and email servers to share academic and administrative information. This weak interoperability in Ontario Tech’s systems causes inefficiency and can negatively affect the user experience of the systems, such as students, lecturers, and administrators who must navigate several platforms to access basic information. *(R3)*
+
+The AI-Powered Digital Assistant Platform or AIDAP is proposed as a systematic artificial intelligence which integrates all of the previous isolated systems mentioned above into one easily accessible cloud-based interface *(R3, R7)*. Utilizing AI, AIDAP interprets natural-language queries *(R5)* and provides real-time, personalized responses based on stored and live data *(R2, R6)*. It supports both text and voice interactions *(R4)*, allowing ease of accessibility for those who need it.
+
+AIDAP will centralize information access *(R1)* and provide said information without requiring a technically advanced background, improving overall productivity and efficiency to reduce administrative workload and enhance the personalized user experience. It supports cloud scalability *(R7)*, multilingual interaction *(RS4)*, and compliance with institutional data privacy standards for cybersecurity *(R8)*, making it a reliable and future-ready solution for the university’s digital ecosystem.
