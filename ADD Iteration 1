@@ -1,1 +1,36 @@
 Include in this file the 7 steps for Iteration 1
+
+Step 1 : Review Inputs. 
+
+The inputs in phase 1 define the primary drivers for iteration 1. The goal is to achieve, 
+    - Strong interoperability with university systems.
+    - High performance and availability.
+    - Scalable and maintainable architecture.
+    - Secure handling of user data.
+    - Seamless user experience through natural-language interaction. 
+
+
+step 2: Establish iteration goal by selecting drivers
+
+Iteration Goal:
+    The goal of this iteration is to define a layered, modular architecture that supports natural-language processing, reliable system integration, and scalable cloud deployment and at the same time meeting performance, availability, and security requirements.
+
+Selected Drivers: 
+
+    Functional Drivers: 
+        - UC1 – Query Info: Users request academic information using natural language.
+        - UC3 – Sync External Data: The system communicates with LMS, registration, and    calendar APIs.
+        - UC6 – Configure System: Administrators update workflows, policies, and configurations.
+
+    Quality Attributes: 
+        - QA2 – Scalability: Architecture must support growth in user load.
+        - QA3 – Interoperability: Must integrate smoothly with multiple university systems.
+        - QA4 – Availability: System should remain operational with minimal downtime.
+
+    Concers: 
+        - CRN-1: Ensuring secure access control, SSO authentication, and compliance.
+        - CRN-3: Managing reliable communication and synchronization with external systems.
+
+    Constraints: 
+        - CON-2: Must support cloud-native, zero-downtime deployment.
+        - CON-4: Must efficiently handle up to 5,000 concurrent users. 
