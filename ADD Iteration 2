@@ -1,1 +1,95 @@
-Include in this file the 7 steps for Iteration 2
+Iteration 2 
+
+Step 1:
+Review Inputs
+
+Step 2 Establish Iteration Goal by Selecting Drivers:
+
+The goal of this iteration is to identify and address the general architectural structure into a more specific architecture to support AIDAPs primary requirements. This iteration process includes defining the main elements like the objects and modules which will implement the main uses as well as allocating their responsibilities across each layer. Additionally it will focus on providing the main structure to ensure consistency and performance across all times.
+
+Selected Drivers:
+- CRN-2: It is essential system maintain consistent availability and consistent performance even during peak times of usage.
+
+- CRN-3: Managing seamless integration with university data systems (LMS, registration, calendar, and email databases) and maintain information across them consistently
+
+- UC1: Query Info – processing natural-language questions.
+- UC3: Sync External Data – integrating with LMS, registration, and calendar systems.
+- UC2: Get Notifications - Students receive notifications for upcoming deadlines
+
+
+Step 3 Choose One or More Elements of the System to Refine: 
+
+
+The main parts of the architecture we are refining is mainly the interaction between students and the system, as well as how all of the external systems within the system are connected. This is mainly to ensure the system functionality achieves its main purpose and is operating as intended, as well as making sure the architecture supports the system for peak loads, maintaining consistency and performance.
+
+Step 4 Choose One or More Design Concepts That Satisfy the Selected Drivers: 
+
+A domain model will be implemented first as decomposition is not possible without the domain model. After domain objects will be chosen to map to those said functional requirements.
+
+Components:
+
+Previous concepts from the previous iteration will be used:
+
+Layered Architecture – Separates the system into clear layers.
+
+Adapter Pattern – Helps connect to different external systems.
+
+Cloud-Native Deployment – Supports scaling and reliability.
+
+
+New concepts to be added include:
+
+Message Queue / Event Bus – Manages tasks and prevents overload.
+
+Caching – Fast temporary storage for quicker access.
+
+Circuit Breaker & Retry Pattern – Prevents repeated calls to failing services and retries safely.
+
+Background Job Scheduler – Runs tasks like synchronization at regular intervals.
+
+Step 5 Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces: 
+
+A basic domain model is created to represent the main objects, their responsibilities, and how they relate. It helps break the system into parts to create a main foundation for later decomposing the architecture into modules.
+
+Old Components
+Layered Architecture: 
+Presentation Layer – user interfaces, chat channels
+Application Layer – NLU, intent handling, orchestration
+Integration Layer – connectors to LMS, registration, calendar APIs
+Data Layer – databases, logs, configuration storage
+(Linked Drivers: UC1, UC2, UC3, CRN-2)
+
+Adapter Pattern:
+Used in the Integration Layer to unify access to different university systems.
+Each external API (LMS, registration, calendar) gets its own adapter, which exposes a consistent interface to the rest of the system.
+This keeps the Application Layer isolated from API differences and supports reliable synchronization.
+(Linked Drivers: UC3, CRN-3)
+
+Cloud-Native Deployment:
+The system is deployed as scalable cloud services.
+This allows components like sync jobs, notification handlers, and the main application to scale independently.
+It also supports high availability and ensures the system can handle peak loads.
+(Linked Drivers: CRN-2, supports UC1/UC2/UC3 indirectly)
+
+New Components
+Message Queue/Event Bus:
+Ensures a consistent and reliable performance even during peak times of load. Ensuring the system isn’t overloaded with multiple queries at once. This additionally applies for when the system needs to send information from the system to the individual student. That way a more streamlined pipeline is used for sending data and ensuring consistent performance.
+(Linked Drivers: CRN-2, UC2)
+
+Caching:
+This will be individual conversations for each student for temporary information. This is to ensure performance during times of consistent load, rather than sending all information to the database to send it would instead be loaded into a cache which will allow the system to quickly access it for quick and snappy responses while reducing load on the database.
+(Linked Drivers: CRN-2, UC1)
+
+Circuit Breaker and Retry Pattern:
+These patterns handle stopping a system from endlessly attempting to access a failing api, as well as retrying to start up the server after an unexpected shut down. These patterns mainly are put into place to ensure the system is constantly available and reliable at all times while not wasting resources on attempting to access failing apis.
+(Linked Drivers: CRN-3, UC3)
+
+Background Job Schedular:
+This component of the system handles manners such as syncing external data or sending out notifications. This is mainly to ensure performance in the backend server since having a scheduler to regularly send out intervals of data is a much more efficient use of resources rather than having data sent out random or as fast as possible. Reducing load on a server as well as ensuring a consistent track of data.
+(Linked Drivers: UC2, UC3, CRN-2)
+
+
+Step 6:
+
+Step 7: Next Iteration Plan
+
