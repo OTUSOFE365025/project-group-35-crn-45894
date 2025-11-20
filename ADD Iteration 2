@@ -4,24 +4,39 @@ Step 1: Review Inputs
 
 The following architectural drivers guide this iteration:
 
-Use Cases:
-- UC1 – Query Info: Natural-language academic inquiries.
-- UC2 – Get Notifications: Deliver upcoming deadlines and updates.
-- UC3 – Sync External Data: Integrate with LMS, registration, and calendar systems.
+Use Cases  
+(See: [Use Cases.md](Use%20Cases.md))
+- UC1 – Query Info  
+- UC2 – Get Notifications  
+- UC3 – Sync External Data  
+- UC4 – Manage Course Content  
+- UC5 – View Analytics  
+- UC6 – Configure System  
+- UC7 – Monitor System  
 
-Concerns:
-- CRN-2: Maintain consistent performance and availability under peak load.
-- CRN-3: Ensure reliable synchronization and communication with external university systems.
+Concerns  
+(See: [Concerns.md](Concerns.md))
+- CRN-1 – Data privacy & security  
+- CRN-2 – Performance & availability  
+- CRN-3 – Reliable system integration  
+- CRN-4 – Accurate AI interpretation  
 
-Constraints:
-- CON-1: Average queries must respond within 2 seconds.
-- CON-2 / CON-4: Must support cloud-native deployment and scalability up to 5,000 concurrent users.
-- CON-5: System must maintain 99.5% uptime with failover and recovery mechanisms.
+Constraints  
+(See: [Constraints.md](Constraints.md))
+- CON-1 – Avg response ≤ 2 seconds  
+- CON-2 – Cloud-native continuous deployment  
+- CON-3 – Must use AI/NLU models  
+- CON-4 – Scale to 5,000 concurrent users  
+- CON-5 – 99.5% uptime with failover  
 
-Quality Attributes:
-- QA2 – Scalability: System must handle increased user load without performance loss.
-- QA3 – Interoperability: System must integrate smoothly with external academic systems.
-- QA4 – Availability: System must remain operational 24/7 with minimal downtime.
+Quality Attributes  
+(See: [Quality Attributes.md](Quality%20Attributes.md))
+- QA1 – Privacy & Security  
+- QA2 – Scalability  
+- QA3 – Interoperability  
+- QA4 – Availability  
+- QA5 – Usability  
+- QA6 – Maintainability  
 
 
 Step 2 Establish Iteration Goal by Selecting Drivers:
