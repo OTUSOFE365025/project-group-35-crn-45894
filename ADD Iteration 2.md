@@ -1,168 +1,197 @@
 # Iteration 2
 
-## Step 1 — Review Inputs
+## Step 1: Review Inputs
 
-### **Use Cases**
+The following architectural drivers guide this iteration:
+
+### **Use Cases:**
 - **UC1 – Query Info:** Natural-language academic inquiries.
-- **UC2 – Get Notifications:** Upcoming deadlines and updates.
+- **UC2 – Get Notifications:** Deliver upcoming deadlines and updates.
 - **UC3 – Sync External Data:** Integrate with LMS, registration, and calendar systems.
 
-### **Concerns**
+### **Concerns:**
 - **CRN-2:** Maintain consistent performance and availability under peak load.
+- **CRN-3:** Ensure reliable synchronization and communication with external university systems.
+
+### **Constraints:**
+- **CON-1:** Average queries must respond within 2 seconds.
+- **CON-2 / CON-4:** Must support cloud-native deployment and scalability up to 5,000 concurrent users.
+- **CON-5:** System must maintain 99.5% uptime with failover and recovery mechanisms.
+
+### **Quality Attributes:**
+- **QA2 – Scalability:** System must handle increased user load without performance loss.
+- **QA3 – Interoperability:** System must integrate smoothly with external academic systems.
+- **QA4 – Availability:** System must remain operational 24/7 with minimal downtime.
+
+
+---
+
+## Step 2: Establish Iteration Goal by Selecting Drivers
+
+The goal of this iteration is to identify and address the general architectural structure into a more specific architecture to support AIDAPs primary requirements. This iteration process includes defining the main elements like the objects and modules which will implement the main uses as well as allocating their responsibilities across each layer. Additionally it will focus on providing the main structure to ensure consistency and performance across all times.
+
+### **Selected Drivers:**
+
+#### **Use Cases:**
+- **UC1:** Query Info – processing natural-language questions.
+- **UC2:** Get Notifications – delivering upcoming deadlines.
+- **UC3:** Sync External Data – integrating with LMS, registration, and calendar systems.
+
+#### **Concerns:**
+- **CRN-2:** Maintain consistent availability and performance during peak usage.
 - **CRN-3:** Ensure reliable synchronization with external university systems.
 
-### **Constraints**
-- **CON-1:** Queries must respond within ~2 seconds.
-- **CON-2 / CON-4:** Must support cloud-native deployment and scale to 5,000+ users.
-- **CON-5:** System must maintain 99.5% uptime.
-
-### **Quality Attributes**
-- **QA2 – Scalability**
-- **QA3 – Interoperability**
-- **QA4 – Availability**
+#### **Quality Attributes:**
+- **QA2:** Scalability – system must handle increased user load.
+- **QA3:** Interoperability – system must integrate smoothly with external systems.
+- **QA4:** Availability – system must remain operational with minimal downtime.
 
 
-## Step 2 — Establish Iteration Goal by Selecting Drivers
+---
 
-The goal of this iteration is to refine the architecture into more concrete elements that support AIDAP’s primary requirements. This includes defining modules linked to the selected use cases and ensuring consistent performance, reliable integrations, and scalable structure.
-
-### **Selected Drivers**
-
-#### **Use Cases**
-- **UC1 – Query Info**
-- **UC2 – Get Notifications**
-- **UC3 – Sync External Data**
-
-#### **Concerns**
-- **CRN-2 – Performance and Availability under load**
-- **CRN-3 – Reliable Integration**
-
-#### **Quality Attributes**
-- **QA2 – Scalability**
-- **QA3 – Interoperability**
-- **QA4 – Availability**
-
-
-## Step 3 — Choose One or More Elements of the System to Refine
+## Step 3: Choose One or More Elements of the System to Refine
 
 ### **High-Level Step 3 Diagram**
-![Step 3 Diagram](iteration2assets/step3.png)
+![alt text](iteration2assets/step3.png)
 
-The refinement focuses on:
-- Interaction between students and the system.
-- All external connections (LMS, registration, calendar).
-- Strengthening scalability, availability, and performance under heavy load.
+The main parts of the architecture we are refining is the interaction between students and the system, as well as how all of the external elements within the system are connected to optimize scalability and availability. This is mainly to ensure the system functionality achieves its main purpose and is operating as intended, as well as making sure the architecture supports the system for peak loads, maintaining consistency and performance.
 
 
-## Step 4 — Choose Design Concepts That Satisfy the Selected Drivers
+---
 
-A domain model is created first to identify core objects before decomposition.
+## Step 4: Choose One or More Design Concepts That Satisfy the Selected Drivers
 
-### **Previous Concepts**
-- **Layered Architecture**
-- **Adapter Pattern**
-- **Cloud-Native Deployment**
+A domain model will be implemented first as decomposition is not possible without the domain model. After domain objects will be chosen to map to those said functional requirements.
 
-### **New Concepts**
-- **Message Queue / Event Bus**
-- **Caching**
-- **Circuit Breaker & Retry Pattern**
-- **Background Job Scheduler**
+### **Components:**
+
+#### **Previous concepts from the previous iteration will be used:**
+- **Layered Architecture** – Separates the system into clear layers.
+- **Adapter Pattern** – Helps connect to different external systems.
+- **Cloud-Native Deployment** – Supports scaling and reliability.
+
+#### **New concepts to be added include:**
+- **Message Queue / Event Bus** – Manages tasks and prevents overload.
+- **Caching** – Fast temporary storage for quicker access.
+- **Circuit Breaker & Retry Pattern** – Prevents repeated calls to failing services and retries safely.
+- **Background Job Scheduler** – Runs tasks like synchronization at regular intervals.
 
 
-## Step 5 — Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces
+---
 
-A basic domain model is used to define the system elements and their relationships.
+## Step 5: Instantiate Architectural Elements, Allocate Responsibilities, and Define Interfaces
+
+A basic domain model is created to represent the main objects, their responsibilities, and how they relate. It helps break the system into parts to create a main foundation for later decomposing the architecture into modules.
 
 ---
 
 ### **Old Components**
 
-#### **Layered Architecture**
-- **Presentation Layer:** chat interface
-- **Application Layer:** NLU, orchestrator
-- **Integration Layer:** adapters for LMS, registration, calendar
-- **Data Layer:** configuration, logs, storage  
-**Linked Drivers:** UC1, UC2, UC3, CRN-2, **QA2**, **QA4**
+#### **Layered Architecture:**
+- Presentation Layer – user interfaces, chat channels  
+- Application Layer – NLU, intent handling, orchestration  
+- Integration Layer – connectors to LMS, registration, calendar APIs  
+- Data Layer – databases, logs, configuration storage  
 
-#### **Adapter Pattern**
-Unifies access to external systems and hides API complexity.  
-**Linked Drivers:** UC3, CRN-3, **QA3**
+**(Linked Drivers: UC1, UC2, UC3, CRN-2, QA2, QA4)**
 
-#### **Cloud-Native Deployment**
-Enables scaling, availability, and separation of components.  
-**Linked Drivers:** CRN-2, **QA2**, **QA4**
+---
+
+#### **Adapter Pattern:**
+Used in the Integration Layer to unify access to different university systems. Each external API (LMS, registration, calendar) gets its own adapter, which exposes a consistent interface to the rest of the system. This keeps the Application Layer isolated from API differences and supports reliable synchronization.
+
+**(Linked Drivers: UC3, CRN-3, QA3)**
+
+---
+
+#### **Cloud-Native Deployment:**
+The system is deployed as scalable cloud services. This allows components like sync jobs, notification handlers, and the main application to scale independently. It also supports high availability and ensures the system can handle peak loads.
+
+**(Linked Drivers: CRN-2, QA2, QA4, supports UC1/UC2/UC3 indirectly)**
 
 ---
 
 ### **New Components**
 
-#### **Message Queue / Event Bus**
-Prevents overload and ensures reliable processing.  
-**Location:** Between Application Layer ↔ Integration Layer  
-**Linked Drivers:** CRN-2, UC2, **QA2**, **QA4**
+#### **Message Queue/Event Bus:**
+Ensures consistent and reliable performance even during peak times of load. Ensuring the system isn’t overloaded with multiple processes at once. This additionally applies for when the system needs to send information from the system to the individual student. That way a more streamlined pipeline is used for sending data and ensuring consistent performance.
 
-#### **Caching**
-Stores temporary student conversation data for fast access.  
-**Location:** Data Layer → Cache Store  
-**Linked Drivers:** CRN-2, UC1, **QA2**
+**Location and Component:**  
+Message Queue:  
+Between Application and Integration Layer  
 
-#### **Circuit Breaker & Retry Pattern**
-Prevents repeated failing calls and stabilizes external interactions.  
-**Location:** Integration Layer (attached to all adapters)  
-**Linked Drivers:** CRN-3, UC3, **QA3**, **QA4**
-
-#### **Background Job Scheduler**
-Runs scheduled sync tasks and notification jobs.  
-**Location:** Application Layer  
-**Linked Drivers:** UC2, UC3, CRN-2, **QA2**, **QA4**
+**(Linked Drivers: CRN-2, UC2, QA2, QA4)**
 
 ---
 
-## Step 6 — Architecture Diagrams
+#### **Caching:**
+This will be individual conversations for each student for temporary information. This is to ensure performance during times of consistent load, rather than sending all information to the database to send it would instead be loaded into a cache which will allow the system to quickly access it for quick and snappy responses while reducing load on the database.
+
+**Location and Component:**  
+Cache Store:  
+Data Layer (further refined)
+
+**(Linked Drivers: CRN-2, UC1, QA2)**
+
+---
+
+#### **Circuit Breaker and Retry Pattern:**
+These patterns handle stopping a system from endlessly attempting to access a failing API, as well as retrying to start up the server after an unexpected shut down. These patterns mainly are put into place to ensure the system is constantly available and reliable at all times while not wasting resources on attempting to access failing APIs.
+
+**Location and Component:**  
+Circuit Breaker & Retry Handler:  
+Integration Layer (attached to all external system adapters)
+
+**(Linked Drivers: CRN-3, UC3, QA3, QA4)**
+
+---
+
+#### **Background Job Scheduler:**
+This component of the system handles tasks such as syncing external data or sending out notifications. This is mainly to ensure performance in the backend server since having a scheduler to regularly send out intervals of data is a much more efficient use of resources rather than having data sent out randomly or as fast as possible. This reduces load on the server as well as ensuring consistent and reliable operations.
+
+**Location and Component:**  
+Job Scheduler:  
+Application Layer (triggers Syncer Service and Notification Service)
+
+**(Linked Drivers: UC2, UC3, CRN-2, QA2, QA4)**
+
+
+---
+
+## Step 6: Draw the actual accurate part of the architecture in the step process
 
 ### **Domain Model Diagram**
-![Domain Model Diagram](iteration2assets/domain.png)
+![alt text](iteration2assets/domain.png)
 
 ### **Mapped Domain Model Diagram**
-![Mapped Domain Model](iteration2assets/mapped.png)
+![alt text](iteration2assets/mapped.png)
 
 ### **Layered Architecture Diagram**
-![Layered Architecture](iteration2assets/layered.png)
+![alt text](iteration2assets/layered.png)
 
 ### **Sequence Diagram**
-![Sequence Diagram](iteration2assets/sequence.png)
+![alt text](iteration2assets/sequence.png)
+
 
 ---
 
-## Step 7 — Verifying That the Architecture Satisfies the Selected Use Cases and Concerns
+## Step 7: Verifying that the architecture satisfies the selected use cases and concerns for this iteration
 
-### **UC1 – Query Info**
-Supported by NLU Engine, Orchestrator, and Query Service.  
-Caching improves repeated-query speed → maintains performance.
+**UC1 (Query Info)** is supported through the NLU Engine, Orchestrator, and Query Service. The NLU interprets the student’s question, the Orchestrator determines what information is required, and the Query Service retrieves academic data through the Integration Layer adapters. Caching helps speed up repeated queries, supporting consistent performance.
 
-### **UC2 – Get Notifications**
-Notification Service + Message Queue deliver messages reliably.  
-Scheduler triggers periodic notifications when needed.
+**UC2 (Get Notifications)** is supported through the Notification Service and the Message Queue. The Notification Service creates notification messages, the Message Queue handles delivery without overloading the system, and the Email Adapter sends them to the student. The Job Scheduler can trigger scheduled notifications when needed.
 
-### **UC3 – Sync External Data**
-Syncer Service uses LMS/Registration/Calendar adapters.  
-Circuit Breaker + Retry ensures stable synchronization during failures.
+**UC3 (Sync External Data)** is supported through the Syncer Service, which communicates with LMS, Registration, and Calendar Adapters to retrieve updated academic information. The Retry Handler and Circuit Breaker ensure stable synchronization even if external systems fail.
 
-### **CRN-2 — Performance and Availability**
-Handled through caching, message queue, cloud scaling, and separation of responsibilities.
+**Concern CRN-2 (performance and availability)** is addressed through caching, the Message Queue, and the separation of responsibilities in the Application Layer, which allow the system to maintain performance during peak loads.
 
-### **CRN-3 — Reliable Integration**
-Handled through Adapter Pattern, Circuit Breaker, and Retry logic.
+**Concern CRN-3 (reliable integration)** is addressed through the Adapter Pattern together with the Retry Handler and Circuit Breaker, ensuring consistent and dependable communication with external university systems.
 
-### **QA2 — Scalability**
-Cloud-native scaling, caching, and message queue support system growth.
+**QA2 (Scalability)** is supported by cloud-native deployment, caching, and message queue.
 
-### **QA3 — Interoperability**
-Adapters + stable retry logic ensure smooth multi-system integration.
+**QA3 (Interoperability)** is supported by adapters and stable retry logic.
 
-### **QA4 — Availability**
-Circuit breaker, retry, and scalable deployment maintain uptime.
+**QA4 (Availability)** is supported by circuit breaking, retry, and distributed scaling.
 
-The architecture satisfies all selected use cases, concerns, and quality attributes for this iteration.
+Based on these checks, the architecture satisfies all selected use cases and concerns for this iteration.
 
