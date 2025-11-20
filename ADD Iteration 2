@@ -19,6 +19,7 @@ Selected Drivers:
 
 Step 3 Choose One or More Elements of the System to Refine: 
 
+[alt text](iteration2assets/step3.png)
 
 The main parts of the architecture we are refining is mainly the interaction between students and the system, as well as how all of the external systems within the system are connected. This is mainly to ensure the system functionality achieves its main purpose and is operating as intended, as well as making sure the architecture supports the system for peak loads, maintaining consistency and performance.
 
