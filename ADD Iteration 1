@@ -118,3 +118,72 @@ High-Level Responsibilities of Each Layer:
 
 
 Step 6: ![alt text](image.png)
+        ![alt text](./iteration1assets/iteration1image2.jpeg)
+
+Step 7 : Verify that the architecture produced in Iteration 1 satisfies the selected drivers specified in step 2.
+
+- UC1 – Query Info  
+    - UC1 is satisfied.  
+    - The Presentation Layer captures user messages, the NLU Engine interprets intent, and the Conversation Orchestrator determines which service to contact.  
+    - The LMS, Registration, and Calendar Adapters retrieve academic information from external systems and databases.  
+    - The Presentation Layer swiftly displays the response back to the user.
+
+- UC3 – Sync External Data  
+    - UC3 is satisfied.  
+    - The Integration Layer uses adapters that standardize communication with LMS, registration, and calendar systems.  
+    - The Adapter/Facade pattern allows the system to integrate with multiple universities despite differences in their APIs.  
+    - The Conversation Orchestrator coordinates data synchronization tasks to ensure consistent and reliable updates.
+
+- UC6 – Configure System  
+    - UC6 is satisfied.  
+    - The Admin Console feature provides tools for administrators to update workflows, policies, and configurations accordingly.  
+    - The Configuration Store maintains system settings securely.  
+    - Centralized authentication ensures only authorized administrators can make configuration changes. Ensuring security of the application and data integrity.
+
+Verification of Quality Attributes
+
+- QA2 – Scalability  
+    - QA2 is satisfied.  
+    - Cloud-native deployment enables horizontal scaling across different layers.  
+    - The architecture avoids bottlenecks by separating Presentation, Application, Integration, and Data responsibilities.  
+    - The adapter pattern isolates external dependencies, preventing performance slowdowns when external APIs are under load. 
+    - All of these functions ensure the application is largely scalable.
+
+- QA3 – Interoperability  
+    - QA3 is satisfied.  
+    - For an application to be interoperable, multiple systems should be allowed to connect, share data, and function together without manual efforts.
+    - The Integration Layer standardizes communication with all university systems through adapters.  
+    - The Common Integration API ensures the orchestrator interacts with external systems in a unified manner, regardless of API differences.
+
+- QA4 – Availability  
+    - QA4 is satisfied.  
+    - Cloud infrastructure enables zero-downtime updates and distributed deployment.  
+    - The Log & Metrics Service supports rapid detection and recovery from errors.  
+    - Separation of components ensures system stability even if one module experiences issues.
+
+Verification of Concerns
+
+- CRN-1 – Security, Access Control, and Compliance  
+    - CRN-1  is satisfied.  
+    - Centralized SSO authentication provides secure access control.  
+    - Sensitive academic and personal data is protected within authenticated components.  
+    - Administrative tools enforce proper authorization and compliance with institutional policies.
+
+- CRN-3 – Reliable Integration With External Systems  
+    - CRN-3 is satisfied.  
+    - Dedicated adapters isolate external API failures and differences.  
+    - The Common Integration API provides consistent communication patterns, retry logic, and fallback handling.  
+    - These mechanisms ensure stable and synchronized data exchange with university systems.
+
+Verification of Constraints
+
+CON-2 – Cloud-Native, Zero-Downtime Deployment  
+    - CON-2 is satisfied.  
+    The architecture supports distributed cloud deployment.  
+    Independent services can be updated without interrupting system availability.
+
+CON-4 – Ability to Handle 5,000 Concurrent Users  
+    - CON-4 is satisfied.  
+    Horizontal scaling supports increased concurrent traffic.  
+    Decoupled services prevent load on one component from causing slowdowns in others.  
+    Asynchronous integration decreases wait times during high-demand periods.
