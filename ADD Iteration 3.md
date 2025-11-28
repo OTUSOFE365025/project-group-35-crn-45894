@@ -41,7 +41,7 @@ For this iteration, we focus on the sync and reliability subsystem, so the desig
     Coordinates each sync run and routes jobs to the correct handler.
 
     SyncHandlers (LMS / Registration / Calendar):
-    Perform the core sync steps: fetch → transform → validate → store.
+    Perform the core sync steps: fetch --> transform --> validate --> store.
 
     RetryHandle:
     Retries temporary failures safely to improve reliability.
