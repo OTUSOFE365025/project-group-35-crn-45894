@@ -5,15 +5,11 @@ This document performs Iteration 3 ATAM activities for AIDAP: it contains
 (B) descriptions of risks, non-risks, sensitivity points, and tradeoffs, and  
 (C) an ATAM utility tree.  
 
-It concludes with an evaluation of whether the ATAM deliverables are satisfied and a short checklist of evidence required to claim satisfaction.
+This ATAM assessment concludes with a short evaluation of whether or not the deliverables were satisfied
 
-Status: draft — update with empirical results, logs, and performance measurements to finalize.
+## Summary
 
----
-
-## Executive summary
-
-Iteration 3 focuses on applying the ATAM to evaluate how well our architecture supports the key requirements of the **Sync Subsystem** — the part responsible for periodic LMS/Registration/Calendar updates (UC3).  
+Since iteration 3 focuses on refining the Sync Subsystem architecture by ensuring reliable periodic synchronization, safe external API access retry + circuit-breaker behavior, and consistency with cloud-native deployment. This part is responsible for Use Case 3 (Sync External Data)
 
 Our prioritized quality attributes for this iteration are:
 
@@ -21,7 +17,7 @@ Our prioritized quality attributes for this iteration are:
 - **Interoperability** (stable communication with external systems)
 - **Availability & Reliability** (fault tolerance, retries, circuit breakers)
 
-These qualities were selected because the sync pipeline interacts with unstable external systems and therefore introduces the highest architectural risk. Below are the ATAM artifacts required for assessment.
+These qualities were selected since they align very closely with Use Case 3 and also because the sync pipeline interacts with unstable external systems and therefore introduces the highest architectural risk. Below are the ATAM artifacts required for assessment.
 
 ---
 
@@ -42,20 +38,20 @@ These qualities were selected because the sync pipeline interacts with unstable 
 
 ## B. Risks, Non-Risks, Sensitivity Points, and Tradeoffs
 
-### **Risks (expanded)**
+### **Risks**
 
-- **R1 – Sync overload**: If multiple sync jobs launch simultaneously during peak hours, they may overload both AIDAP and external systems. MQ buffering and job staggering are essential.
+- **R1 – Sync overload**: If multiple sync jobs launch at the same time during peak hours, it may cause an overload in both AIDAP and external systems. MQ buffering and job staggering are essential.
 - **R2 – External outages**: LMS/Registration APIs frequently become unreachable. Without circuit breakers, AIDAP may continuously retry and collapse.
-- **R3 – Partial updates**: A sync could fail halfway, leaving academic data inconsistent. The structured sync pipeline mitigates this.
-- **R4 – MQ congestion**: Since UC2 (notifications) and UC3 (sync) share the MQ, high load from both may produce delays.
-- **R5 – API schema drift**: External systems may change field names or formats without notice. Adapters must validate and isolate failures.
-- **R6 – Retry storms**: Incorrect retry settings can flood external systems or overwhelm our own workers.
+- **R3 – Partial updates**: If a sync fails halfway or is incomplete, only incomplete academic data may be updated. The structured sync pipeline mitigates this.
+- **R4 – MQ congestion**: Since UC2 (notifications) and UC3 (sync) share the MQ, high load from both may produce delays and congestion.
+- **R5 – API schema drift**: External systems may change field names or formats without notice. Adapters must validate and isolate failures to ensure accuracy.
+- **R6 – Retry storms**: Too much retries or incorrect retry settings can flood external systems.
 - **R7 – Overactive circuit breaker**: If breaker thresholds are too low, sync pauses too easily, leading to stale academic data.
 - **R8 – Overly frequent sync intervals**: Misconfigured scheduler values can cause runaway API calls.
 
 ---
 
-### **Non-Risks (validated strengths)**
+### **Non-Risks**
 
 - **NR1 – Adapter Pattern**: Our adapter layer isolates external API differences, maximizing interoperability (QA3).
 - **NR2 – Layered Architecture**: Sync failures do not block the NLU or presentation layer (UC1 remains stable).
@@ -65,7 +61,9 @@ These qualities were selected because the sync pipeline interacts with unstable 
 
 ---
 
-### **Sensitivity Points (small change → big effect)**
+### **Sensitivity Points **
+
+These sensitive points if changed can result in big effects throughout the system
 
 - **SP1 – Sync frequency**: Changing the sync interval dramatically affects system load and data freshness.
 - **SP2 – Retry/backoff configuration**: Even small adjustments to retry caps or backoff timing can destabilize systems.
@@ -77,8 +75,8 @@ These qualities were selected because the sync pipeline interacts with unstable 
 
 ### **Tradeoffs (selected)**
 
-- **Freshness vs Load**: More frequent sync improves data freshness but increases load and risk.
-- **Retry aggressiveness vs API protection**: More retries improve reliability but can spam external systems.
+- **Freshness vs Load**: More frequent sync improves data freshness but increases load and risk since more update are required for fresh data.
+- **Retry aggressiveness vs API protection**: More retries improve reliability but can spam external systems and overload them causing some significant delays.
 - **Bulkhead isolation vs complexity**: Isolating each external adapter increases resilience but adds operational overhead.
 - **Unified queue vs multiple queues**: A single MQ simplifies deployment but increases cross-traffic contention.
 - **Circuit-breaker strictness vs availability**: Stricter thresholds protect resources but decrease sync frequency.
@@ -130,7 +128,5 @@ To fully satisfy the assessment, we still need to incorporate:
 - Circuit breaker threshold validation logs  
 - Documentation of retry/backoff policy testing  
 - A brief demo or simulation script for sync failure scenarios  
-
-Once these empirical artifacts are added to the repository, the ATAM evaluation will be fully complete.
 
 ---
