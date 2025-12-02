@@ -108,6 +108,9 @@ These sensitive points if changed can result in big effects throughout the syste
 ### **Maintainability (Medium Priority)**
 - **M1**: Adapters can be hot-fixed within <2 hours when external APIs change.
 
+### Utility Tree Diagram Form
+![Utility Tree](iteration3assets/utility3.png)
+
 ---
 
 ## D. Do these ATAM deliverables get satisfied?
