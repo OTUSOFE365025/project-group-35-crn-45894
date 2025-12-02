@@ -52,7 +52,56 @@ For this iteration, we focus on the sync and reliability subsystem, so the desig
     External Adapters:
     Provide a consistent interface to each external API.
 
-    SyncLog Service:
+    Sync Log Service:
     Tracks sync results for monitoring and troubleshooting.
 
 These components together create a stable, fault-tolerant sync workflow.
+
+## Step 6: Sketch Diagrams
+### Architecture Diagram
+![Architecture Diagram](iteration3assets/architecture3.png)
+
+### Sequence Diagram
+![Sequence Diagram](iteration3assets/sequence3.png)
+
+## Step 7: Verifying That the Architecture Satisfies the Selected Drivers
+
+This iteration focuses only on refining the Sync Subsystem for UC3 - Sync External Data.  
+The goal was to improve reliability and stability when interacting and syncing with external systems.  
+The refinements introduced in Steps 4 and 5 address these goals directly.
+
+The updated sync workflow now satisfies UC3 more effectively through these several components:
+
+**SyncManager**  
+Provides a single coordination point for all sync operations. It ensures that scheduled syncs follow a consistent and predictable workflow.
+
+**Dedicated SyncHandlers (LMS, Registration, Calendar)**  
+Each external system has its own handler. This separation implements the bulkhead pattern and prevents failures in one system from affecting the others.
+
+**Structured Sync Pipeline**  
+Each handler follows the same sequence of steps (fetch - transform - validate - store).  
+This reduces errors, improves maintainability, and ensures consistent data processing.
+
+**Sync Log Service**  
+Records sync attempts, results, and failures. This improves observability and supports debugging and monitoring over time.
+
+These new components added to the refined sync system make UC3 more reliable, predictable, and tolerant of external instability than the version defined in the previous iteration.
+
+**CRN-3 - Reliable System Integration**  
+Addressed through retry handler, circuit breaker, dedicated handlers, and adapters.  
+The architecture now handles unstable or unexpected results without causing system-wide failures.
+
+**QA4 - Availability**  
+Strengthened by circuit breaking, controlled retries, bulkhead isolation, and scheduled sync behavior.  
+The system remains available even when services go down.
+
+**QA3 - Interoperability**  
+Improved through clear separation between internal sync logic and external adapters.  
+Each external system is integrated through a stable, consistent interface.
+
+**QA2 - Scalability**  
+Supported by handlers isolated from each other, cloud-native deployment, and periodic scheduling that avoids sudden load spikes.
+
+The refinements introduced in this iteration through the SyncManager, separate SyncHandlers, structured pipelines, and Sync Log Service directly satisfy the goals of UC3 and the related concerns (CRN-3) and quality attributes (QA3, QA4, QA2).  
+The Sync Subsystem is now more reliable, robust, and scalable, meeting the objectives of Iteration 3.
+
