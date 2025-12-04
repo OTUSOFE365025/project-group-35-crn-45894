@@ -1,6 +1,8 @@
 # Iteration 3 - 7steps 
 
-## Step 1: This iteration revisits UC3 (Sync External Data), CRN-3 (Reliable System Integration), and quality attributes (QA4 Availability, QA3 Interoperability, QA2 Scalability). The previous iterations defined the major components of the system, but the Sync Subsystem remained under-specified. External integrations are unstable, have rate limits, and can behave unpredictably, which introduces concerns around reliability and fault isolation. The architecture must support periodic cloud-native synchronization without impacting the main system’s performance. 
+## Step 1: 
+
+This iteration revisits UC3 (Sync External Data), CRN-3 (Reliable System Integration), and quality attributes (QA4 Availability, QA3 Interoperability, QA2 Scalability). The previous iterations defined the major components of the system, but the Sync Subsystem remained under-specified. External integrations are unstable, have rate limits, and can behave unpredictably, which introduces concerns around reliability and fault isolation. The architecture must support periodic cloud-native synchronization without impacting the main system’s performance. 
 
 ## Step 2: Establish Iteration Goal by Selecting Drivers
 
